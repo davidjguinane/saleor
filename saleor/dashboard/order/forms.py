@@ -19,7 +19,8 @@ from ...order.utils import (
     move_order_line_to_group, recalculate_order, remove_empty_groups
 )
 from ...product.models import Product, ProductVariant, Stock
-from ...userprofile.i18n import AddressForm, PossiblePhoneNumberFormField
+from ...userprofile.i18n import (AddressForm as StorefrontAddressForm,
+                                 PossiblePhoneNumberFormField)
 
 
 class OrderNoteForm(forms.ModelForm):
@@ -360,6 +361,6 @@ class AddVariantToDeliveryGroupForm(forms.Form):
         recalculate_order(self.group.order)
 
 
-class DashboardAddressForm(AddressForm):
+class AddressForm(StorefrontAddressForm):
     phone = PossiblePhoneNumberFormField(
         widget=PhonePrefixWidget, required=False)
